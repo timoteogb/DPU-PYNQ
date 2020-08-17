@@ -1,0 +1,5 @@
+{
+    "target"   : "dpuv2",
+    "dcf"      : "/opt/vitis_ai/compiler/arch/dpuv2/ZCU104custom/ZCU104custom.dcf",
+    "cpu_arch" : "arm64"
+}

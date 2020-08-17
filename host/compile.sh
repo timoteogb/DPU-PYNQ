@@ -16,6 +16,11 @@ if [ $BOARD = "Ultra96" ] && [ ! -e dpu.hwh ]; then
 	exit 1
 fi
 
+if [ $BOARD = "ZCU104custom" ] && [ ! -e dpu.hwh ]; then
+	echo "Error: please make sure dpu.hwh is in the working directory."
+	exit 1
+fi
+
 VAI_VERSION=1.1
 MODEL_ZIP=$(echo ${MODEL_NAME} | sed 's/_[1-9\.]\+G_/_/g').zip
 MODEL_UNZIP=$(echo ${MODEL_NAME} | sed "s/\(.*\)_${VAI_VERSION}\(.*\)/\1\2/")
@@ -38,6 +43,15 @@ if [ $BOARD = "Ultra96" ]; then
 	sudo mkdir -p /opt/vitis_ai/compiler/arch/dpuv2/Ultra96
 	sudo cp -f Ultra96.json \
 		/opt/vitis_ai/compiler/arch/dpuv2/Ultra96/Ultra96.json
+	dlet -f dpu.hwh
+	sudo cp *.dcf /opt/vitis_ai/compiler/arch/dpuv2/${BOARD}/${BOARD}.dcf
+fi
+
+# If custom ZCU104 hwh file is provided, add DPU support
+if [ $BOARD = "ZCU104custom" ]; then
+	sudo mkdir -p /opt/vitis_ai/compiler/arch/dpuv2/ZCU104custom
+	sudo cp -f ZCU104custom.json \
+		/opt/vitis_ai/compiler/arch/dpuv2/ZCU104custom/ZCU104custom.json
 	dlet -f dpu.hwh
 	sudo cp *.dcf /opt/vitis_ai/compiler/arch/dpuv2/${BOARD}/${BOARD}.dcf
 fi
