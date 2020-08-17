@@ -114,6 +114,8 @@ Once you are in the docker environment, you can run the `compile.sh` script.
 
 Here `Board` can be `Ultra96`, `ZCU104`, and `ZCU111`. For `model_name`, 
 users can check the [model information](https://github.com/Xilinx/AI-Model-Zoo/tree/1387830ef9b846255245c1dc063e7c86ac71498e#model-information) page as shown below.
+`Board` can be also `ZCU104custom` for hardware designs which differ in DPU configuration parameters. 
+Place the corresponding dpu.hwh file in DPU-PYNQ-ZCU104/host/ to compile any model based on the custom hw.
 
 ![](images/model_info.png)
 
